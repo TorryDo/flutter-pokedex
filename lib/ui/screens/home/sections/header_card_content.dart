@@ -1,8 +1,6 @@
 part of '../home.dart';
 
 class _HeaderCardContent extends StatelessWidget {
-  static const double height = 582;
-
   void _onSelectCategory(Category category) {
     AppNavigator.push(category.route);
   }
@@ -13,62 +11,46 @@ class _HeaderCardContent extends StatelessWidget {
     var isDark = themeCubit.isDark;
 
     return Container(
-      clipBehavior: Clip.hardEdge,
-      decoration: const BoxDecoration(
-        // color: Colors.white,
-        borderRadius: BorderRadius.vertical(bottom: Radius.circular(10)),
-        // border: Border(
-        //   bottom: BorderSide(
-        //     color: Colors.white,
-        //   ),
-        // ),
-      ),
-      child: PokeballBackground(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            SafeArea(
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: IconButton(
-                    onPressed: () {
-                      // Function to toggle theme
-                      themeCubit.toggleTheme();
-                    },
-                    padding: const EdgeInsets.only(
-                      left: 28,
-                    ),
-                    icon: Icon(
-                      isDark ? Icons.wb_sunny_outlined : Icons.dark_mode_outlined,
-                      color: isDark ? Colors.yellow : Colors.black,
-                      size: 25,
-                    )),
-              ),
+      decoration: const BoxDecoration(),
+      child: Column(
+        children: <Widget>[
+          SafeArea(
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: IconButton(
+                  onPressed: () => themeCubit.toggleTheme(),
+                  padding: const EdgeInsets.only(left: 28),
+                  icon: Icon(
+                    isDark
+                        ? Icons.wb_sunny_outlined
+                        : Icons.dark_mode_outlined,
+                    color: isDark ? Colors.yellow : Colors.black,
+                    size: 25,
+                  )),
             ),
-            _buildTitle(),
-            const KSearchBar(),
-            _buildCategories(context),
-          ],
-        ),
+          ),
+          _buildTitle(),
+          const SizedBox(height: 12),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12),
+            child: KSearchBar(),
+          ),
+          _buildCategories(context),
+        ],
       ),
     );
   }
 
   Widget _buildTitle() {
-    return Expanded(
-      child: Container(
-        constraints: const BoxConstraints.expand(),
-        padding: const EdgeInsets.all(28),
-        alignment: Alignment.bottomLeft,
-        child: const Text(
-          'What Pokemon\nare you looking for?',
-          style: TextStyle(
-            fontSize: 30,
-            height: 1.6,
-            fontWeight: FontWeight.w900,
-          ),
+    return Container(
+      padding: const EdgeInsets.only(left: 18, right: 18, top: 6),
+      alignment: Alignment.topLeft,
+      child: const Text(
+        'What Fruit\nare you looking for?',
+        style: TextStyle(
+          fontSize: 25,
+          height: 1.4,
+          fontWeight: FontWeight.w900,
         ),
       ),
     );

@@ -14,7 +14,7 @@ class SearchBottomModal extends StatelessWidget {
       child: Flexible(
         child: Padding(
           padding: EdgeInsets.fromLTRB(26, 14, 26, 14 + viewInsets + safeAreaBottom),
-          child: const KSearchBar(margin: EdgeInsets.zero),
+          child: const KSearchBar(),
         ),
       ),
     );
